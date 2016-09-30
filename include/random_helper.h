@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <random>
+#include <ctime>
 
 namespace XXYY {
 
@@ -16,7 +17,9 @@ class RandomHelper {
      * @param comming_rate the comming rate
      * @param leaving_rate the leaving rate
      */
-    RandomHelper(double comming_rate, double leaving_rate, int64_t seed);
+    RandomHelper(
+        double comming_rate, double leaving_rate, int64_t seed = std::time(
+        nullptr));
 
     /**
      * get a random number according to comming rate

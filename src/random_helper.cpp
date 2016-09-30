@@ -4,8 +4,7 @@
 using XXYY::RandomHelper;
 
 RandomHelper::RandomHelper(
-    double comming_rate, double leaving_rate, int64_t seed = std::time(
-    nullptr))
+    double comming_rate, double leaving_rate, int64_t seed)
     : comming_(comming_rate), leaving_(leaving_rate), random_engine_(seed){}
 
 uint64_t RandomHelper::GetComming() {

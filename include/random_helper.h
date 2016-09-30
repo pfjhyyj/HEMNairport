@@ -33,6 +33,32 @@ class RandomHelper {
      */
     uint64_t GetLeaving();
 
+    /**
+     * getter for comming rate
+     * @return the mean of the comming poisson distribution
+     */
+    double CommingRate() const;
+
+    /**
+     * getter for leaving rate
+     * @return the mean of the leaving poisson distribution
+     */
+    double LeavingRate() const;
+
+    /**
+     * setter for comming rate
+     * @param comming_rate_ the comming rate to set
+     * @return true if set successfully, false otherwise
+     */
+    bool CommingRate(double comming_rate_);
+
+    /**
+     * setter for leaving rate
+     * @param leaving_rate_ the leaving rate to set
+     * @return true if set successfully, false otherwise
+     */
+    bool LeavingRate(double leaving_rate_);
+
   private:
     /**
      * the random generator for comming

@@ -26,7 +26,7 @@ class RunwayField {
      * @param  scenery [description]
      * @return         [description]
      */
-    RunwayField::Pointer NewField(Scenery scenery);
+    static RunwayField::Pointer NewField(Scenery scenery);
 
     /**
      * do something with the queue based on the strategy

@@ -38,7 +38,7 @@ class WaitingQueue {
      * instruct a plane to take off
      * @return true if a plane take off, false if the queue is empty
      */
-    virtual bool TakeOff() = 0;
+    virtual bool TakeOff();
 
     /**
      * instruct a plane to land
@@ -82,7 +82,7 @@ class WaitingQueue {
     /**
      * the helper to generate the comming planes and leaving planes every turn
      */
-    RandomHelper random_helper;
+    RandomHelper random_helper_;
 
     /**
      * the time pass since start

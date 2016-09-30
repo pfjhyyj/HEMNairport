@@ -2,6 +2,7 @@
 #define XXYY_RANDOM_HELPER_H_
 
 #include <cstdint>
+#include <random>
 
 namespace XXYY {
 
@@ -15,7 +16,7 @@ class RandomHelper {
      * @param comming_rate the comming rate
      * @param leaving_rate the leaving rate
      */
-    RandomHelper(double comming_rate, double leaving_rate);
+    RandomHelper(double comming_rate, double leaving_rate, int64_t seed);
 
     /**
      * get a random number according to comming rate
@@ -31,15 +32,19 @@ class RandomHelper {
 
   private:
     /**
-     * the expectation of the number of planes ready to land each unit of time
+     * the random generator for comming
      */
-    double comming_rate_;
+    std::poisson_distribution<uint64_t> comming_;
 
     /**
-     * the expectation of the number of planes ready to take off each unit of
-     * time
+     * the random generator for leaving
      */
-    double leaving_rate_;
+    std::poisson_distribution<uint64_t> leaving_;
+
+    /**
+     * pseudo random engine for poisson distribution
+     */
+    std::default_random_engine random_engine_;
 };
 
 } // XXYY

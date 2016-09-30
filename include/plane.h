@@ -15,13 +15,14 @@ struct BasicPlane {
     static uint64_t id_count_;
 };
 
-// struct OilPlane : public BasicPlane {
-//   public:
-//     OilPlane(uint64_t the_arrive_time, uint64_t the_oil_left);
+struct OilPlane : public BasicPlane {
+  public:
+    OilPlane(uint64_t the_arrive_time, uint64_t the_oil_left);
 
-//   private:
-//     static uint64_t id_count_;
-// };
+  private:
+    static uint64_t id_count_;
+    uint64_t oil_;
+};
 
 } // XXYY
 

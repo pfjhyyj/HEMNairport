@@ -12,9 +12,21 @@ namespace XXYY {
 class RunwayField {
   public:
     /**
+     * enums specified the sceanery for different fields
+     */
+    enum class Scenery { _1, _2, _3, _4 };
+
+    /**
      * pointer for polymorphism
      */
     using Pointer = std::shared_ptr<RunwayField>;
+
+    /**
+     * factory method to get specified scenery
+     * @param  scenery [description]
+     * @return         [description]
+     */
+    RunwayField::Pointer NewField(Scenery scenery);
 
     /**
      * do something with the queue based on the strategy

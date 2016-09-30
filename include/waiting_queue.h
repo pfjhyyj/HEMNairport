@@ -98,6 +98,11 @@ class WaitingQueue {
      * the queue for the plane that are ready to take off
      */
     LeavingQueue leaving_queue_;
+
+    /**
+     * logger for recording message when order's taken
+     */
+    Logger logger;
 };
 
 } // XXYY

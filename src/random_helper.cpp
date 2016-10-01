@@ -26,13 +26,13 @@ double RandomHelper::LeavingRate() const {
 bool RandomHelper::CommingRate(double comming_rate_) {
     if (comming_rate_ < 0)
         return false;
-    comming_ = std::poisson_distribution(comming_rate_);
+    comming_ = std::poisson_distribution<uint64_t> (comming_rate_);
     return true;
 }
 
 bool RandomHelper::LeavingRate(double leaving_rate_) {
     if (leaving_rate_ < 0)
         return false;
-    leaving_ = std::poisson_distribution(leaving_rate_);
+    leaving_ = std::poisson_distribution<uint64_t> (leaving_rate_);
 }
 

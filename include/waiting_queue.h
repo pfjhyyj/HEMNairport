@@ -78,31 +78,54 @@ class WaitingQueue {
      */
     bool LeavingRate(double leaving_rate);
 
-  private:
+    /**
+     * get current time
+     * @return the current time since the queue is created
+     */
+    uint64_t Clock() const;
+
+    /**
+     * getter for max size for queue
+     * @return the maximum planes allowed in each queue
+     */
+    uint64_t QueueMaxSize() const;
+
+  protected:
+    /**
+     * logger for recording message when order's taken
+     */
+    Logger logger;
+
     /**
      * the helper to generate the comming planes and leaving planes every turn
      */
     RandomHelper random_helper_;
 
     /**
-     * the time pass since start
+     * push random planes to the comming queue
      */
-    uint64_t current_time_;
+    virtual void PrepareComing() = 0;
 
+  private:
     /**
      * max size of the queue on the land and the queue in the air
      */
     size_t queue_max_size_;
 
     /**
+     * push random planes to the leaving queue
+     */
+    void PrepareLeaving();
+
+    /**
+     * the time pass since start
+     */
+    uint64_t clock_;
+
+    /**
      * the queue for the plane that are ready to take off
      */
     LeavingQueue leaving_queue_;
-
-    /**
-     * logger for recording message when order's taken
-     */
-    Logger logger;
 };
 
 } // XXYY

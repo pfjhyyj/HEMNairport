@@ -24,21 +24,17 @@ class GreenQueue : public WaitingQueue {
      * ready to land each unit of time
      * @param  leaving_rate the initial expectation of the number of planes
      * ready to take off each unit of time
+     * @param queue_max_size the max planes two queues can contain respectively
      * @return              the pointer point to the new queue
      */
-    static Pointer NewQueue(double comming_rate, double leaving_rate);
-
-    /**
-     * instruct a plane to take off
-     * @return true if a plane take off, false if the queue is empty
-     */
-    virtual bool TakeOff();
+    static Pointer
+    NewQueue(double comming_rate, double leaving_rate, size_t queue_max_size);
 
     /**
      * instruct a plane to land
      * @return true if a plane land successfully, false if queue is empty
      */
-    virtual bool Land();
+    virtual bool Land() override;
 
   private:
     /**
@@ -48,6 +44,11 @@ class GreenQueue : public WaitingQueue {
      * @queue_max_size the max planes two queues can contain respectively
      */
     GreenQueue(double comming_rate, double leaving_rate, size_t queue_max_size);
+
+    /**
+     * push random planes to the comming queue
+     */
+    virtual void PrepareComing() override;
 
     /**
      * the queue for the plane that are ready to land

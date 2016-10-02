@@ -15,7 +15,8 @@ XXYY::WaitingQueue::Pointer GreenQueue::NewQueue(
 bool GreenQueue::Land() {
     if (comming_queue_.empty())
         return false;
-    // TODO: log landing
+    auto cur_plane = comming_queue_.front();
+    logger.Land(cur_plane, Clock()-cur_plane.arrive_time);
     comming_queue_.pop();
 }
 
@@ -23,10 +24,11 @@ void GreenQueue::PrepareComing() {
     auto coming_num = random_helper_.GetComming();
     for (; coming_num--; ) {
         if (comming_queue_.size() == QueueMaxSize()) {
-            // TODO: log rejection
+            logger.Reject(PlaneFactory::NewBasicPlane(Clock()));
         } else {
-            comming_queue_.push(PlaneFactory::NewBasicPlane(Clock()));
-            // TODO: log ready
+            auto new_plane = PlaneFactory::NewBasicPlane(clock_);
+            comming_queue_.push(new_plane);
+            logger.ReadyToLand(new_plane);
         }
     }
 }

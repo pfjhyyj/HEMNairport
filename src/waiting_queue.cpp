@@ -26,7 +26,8 @@ bool WaitingQueue::LeavingRate(double leaving_rate) {
 bool WaitingQueue::TakeOff() {
     if (leaving_queue_.empty())
         return false;
-    // TODO: do logging
+    auto cur_plane = leaving_queue_.front();
+    logger.TakeOff(cur_plane, Clock()-cur_plane.arrive_time);
     leaving_queue_.pop();
 }
 
@@ -40,10 +41,11 @@ void WaitingQueue::PrepareLeaving() {
     auto leaving_num = random_helper_.GetLeaving();
     for (; leaving_num--; ) {
         if (leaving_queue_.size() == queue_max_size_) {
-            // TODO: log rejection
+            logger.Reject(PlaneFactory::NewBasicPlane(clock_));
         } else {
-            leaving_queue_.push(PlaneFactory::NewBasicPlane(clock_));
-            // TODO: log ready
+        	auto new_plane = PlaneFactory::NewBasicPlane(clock_);
+            leaving_queue_.push(new_plane);
+            logger.ReadyToTakeOff(new_plane);
         }
     }
 }

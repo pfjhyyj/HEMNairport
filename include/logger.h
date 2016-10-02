@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "plane.h"
 
 namespace XXYY {
 
@@ -20,11 +21,11 @@ class Logger {
   	void LogOne(std::string record);
 
   	//  log specific events
-  	void TakeOff(uint64_t num);
-  	void Land(uint64_t num, uint64_t time);
-  	void ReadyToTakeOff(uint64_t num);
-  	void ReadyToLand(uint64_t num);
-  	void Reject(uint64_t num);
+  	void TakeOff(BasicPlane plane, uint64_t time);
+  	void Land(BasicPlane plane, uint64_t time);
+  	void ReadyToTakeOff(BasicPlane plane);
+  	void ReadyToLand(BasicPlane plane);
+  	void Reject(BasicPlane plane);
 
   	// print log function
   	void Print(uint64_t start, uint64_t end);

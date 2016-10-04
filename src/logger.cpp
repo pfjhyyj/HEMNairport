@@ -10,25 +10,26 @@ void Logger::LogOne(std::string record) {
     log_temp.push_back(record);
 }
 
-void Logger::TakeOff(uint64_t num) {
-    LogOne("Plane number "+std::to_string(num)+" take off.");
-}
-
-void Logger::Land(uint64_t num, uint64_t time) {
-    LogOne("Plane number "+std::to_string(num)+" landed after "+
+void Logger::TakeOff(BasicPlane plane, uint64_t time) {
+    LogOne("Plane number "+std::to_string(plane.id)+" take off after "+
         std::to_string(time)+" time units in the takeoff queue.");
 }
 
-void Logger::ReadyToTakeOff(uint64_t num) {
-    LogOne("Plane number "+std::to_string(num)+" ready to take off.");
+void Logger::Land(BasicPlane plane, uint64_t time) {
+    LogOne("Plane number "+std::to_string(plane.id)+" landed after "+
+        std::to_string(time)+" time units in the land queue.");
 }
 
-void Logger::ReadyToLand(uint64_t num) {
-    LogOne("Plane number "+std::to_string(num)+" ready to land.");
+void Logger::ReadyToTakeOff(BasicPlane plane) {
+    LogOne("Plane number "+std::to_string(plane.id)+" ready to take off.");
 }
 
-void Logger::Reject(uint64_t num) {
-    LogOne("Plane number "+std::to_string(num)+" is rejected");
+void Logger::ReadyToLand(BasicPlane plane) {
+    LogOne("Plane number "+std::to_string(plane.id)+" ready to land.");
+}
+
+void Logger::Reject(BasicPlane plane) {
+    LogOne("Plane number "+std::to_string(plane.id)+" is rejected");
 }
 
 void Logger::Print(uint64_t start, uint64_t end) {

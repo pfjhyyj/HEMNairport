@@ -8,6 +8,12 @@ namespace XXYY {
 
 class Airport {
   public:
+
+    /**
+     * run the airport for time units of time
+     * @param time the time airport run
+     */
+    void run(uint64_t time);
   private:
     /**
      * the strategy taken by the runway each turn

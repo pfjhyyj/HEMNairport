@@ -31,7 +31,7 @@ bool WaitingQueue::TakeOff() {
     leaving_queue_.pop();
 }
 
-void WaitingQueue::prepare() {
+void WaitingQueue::Prepare() {
 	if (clock_ != -1) {
 		logger.LogAll();
 	}

@@ -50,7 +50,7 @@ class WaitingQueue {
      * preperation for the queue, including pushing random planes to the queue,
      * update time etc.
      */
-    void prepare();
+    void Prepare();
 
     /**
      * getter for comming rate

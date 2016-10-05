@@ -4,7 +4,7 @@ using XXYY::WaitingQueue;
 
 WaitingQueue::WaitingQueue(
     double comming_rate, double leaving_rate, size_t queue_max_size)
-    : random_helper_(comming_rate, leaving_rate), clock_(-1),
+    : random_helper_(comming_rate, leaving_rate), clock_(0),
       queue_max_size_(queue_max_size) {}
 
 double WaitingQueue::CommingRate() const {
@@ -27,8 +27,9 @@ bool WaitingQueue::TakeOff() {
     if (leaving_queue_.empty())
         return false;
     auto cur_plane = leaving_queue_.front();
-    logger.TakeOff(cur_plane, Clock()-cur_plane.arrive_time);
+    logger.TakeOff(cur_plane, Clock());
     leaving_queue_.pop();
+    return true;
 }
 
 void WaitingQueue::Prepare() {

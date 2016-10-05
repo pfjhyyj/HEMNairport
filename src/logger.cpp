@@ -1,4 +1,5 @@
 #include "logger.h"
+
 using XXYY::Logger;
 
 void Logger::LogAll() {
@@ -11,30 +12,33 @@ void Logger::LogOne(std::string record) {
 }
 
 void Logger::TakeOff(BasicPlane plane, uint64_t time) {
-    LogOne("Plane number "+std::to_string(plane.id)+" take off after "+
-        std::to_string(time)+" time units in the takeoff queue.");
+    LogOne(
+        "Plane number " + std::to_string(plane.id) + " take off after " +
+        std::to_string(time - plane.arrive_time) +
+        " time units in the takeoff queue.");
 }
 
 void Logger::Land(BasicPlane plane, uint64_t time) {
-    LogOne("Plane number "+std::to_string(plane.id)+" landed after "+
-        std::to_string(time)+" time units in the land queue.");
+    LogOne(
+        "Plane number " + std::to_string(plane.id) + " landed after " +
+        std::to_string(time - plane.arrive_time) +
+        " time units in the land queue.");
 }
 
 void Logger::ReadyToTakeOff(BasicPlane plane) {
-    LogOne("Plane number "+std::to_string(plane.id)+" ready to take off.");
+    LogOne("Plane number " + std::to_string(plane.id) + " ready to take off.");
 }
 
 void Logger::ReadyToLand(BasicPlane plane) {
-    LogOne("Plane number "+std::to_string(plane.id)+" ready to land.");
+    LogOne("Plane number " + std::to_string(plane.id) + " ready to land.");
 }
 
 void Logger::Reject(BasicPlane plane) {
-    LogOne("Plane number "+std::to_string(plane.id)+" is rejected");
+    LogOne("Plane number " + std::to_string(plane.id) + " is rejected");
 }
 
 void Logger::Print(uint64_t start, uint64_t end) {
-    if (start < 0 || end < 0 || start > end || 
-        end > log_manager.size()) {
+    if (start > end || end > log_manager.size()) {
         std::cout << "Error: Out of range" << std::endl;
         return;
     }
